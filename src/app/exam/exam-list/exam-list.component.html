@@ -1,0 +1,138 @@
+<p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="425" #cd>
+    <p-footer>
+        <button type="button" pButton icon="fa-close" label="No" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="fa-check" label="Yes" (click)="cd.accept()"></button>
+    </p-footer>
+</p-confirmDialog>
+<div class="row">
+    <div class="col-lg-8 p-r-0 title-margin-right">
+        <div class="page-header">
+            <div class="page-title">
+                <h1>{{section_name}}, <span>Section</span></h1>
+            </div>
+        </div>
+    </div>
+    <!-- /# column -->
+    <div class="col-lg-4 p-l-0 title-margin-left">
+        <div class="page-header">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li><a [routerLink]="'/'">Dashboard</a></li>
+                    <li class="active">{{section_name}}</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- /# column -->
+</div>
+<!-- /# row -->
+
+<section id="main-content">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card alert">
+                <div class="card-header pr">
+                    <h4>Add New Exam Type</h4>
+                </div>
+
+                <form (submit)="addUpdateExam(exam)" (keydown.enter)="$event.preventDefault()">
+                    <div class="basic-form m-t-20">
+                        <div class="form-group">
+                            <label>Exam Title</label>
+                            <input type="text" [(ngModel)]="exam.examTitle" name="examTitle" class="form-control border-none input-flat bg-ash" required>
+                        </div>
+                    </div>
+                    <div class="basic-form m-t-20">
+                        <div class="form-group">
+                            <label>Subject</label>
+                            <select [(ngModel)]="exam.subjectId" name="subjectId" class="form-control bg-ash border-none" required>
+                                <option *ngFor="let subject of subjects | async" [value]="subject.id" >{{subject.subjectName}}</option>
+                            </select>
+                        </div>
+                    </div> 
+                    <div class="basic-form">
+                        <div class="form-group">
+                            <label>Coefficient</label>
+                            <input type="text" [(ngModel)]="exam.examCoef" name="examCoef" class="form-control border-none input-flat bg-ash" required>
+                        </div>
+                    </div>                        
+                    <div class="basic-form m-t-20">
+                        <div class="form-group">
+                            <label>exam Date</label>
+                            <owl-date-time [(ngModel)]="exam.examDate" 
+                                name="examDate" 
+                                [placeHolder]="'YYY-MM-DD'" 
+                                [dateFormat]="'YYYY-MM-DD'" 
+                                [autoClose]="true"
+                                [type]="'calendar'"
+                                [inputStyle] = 
+                                    "{
+                                        padding: '6px 12px',
+                                        transition: 'border-color ease-in-out .15s,box-shadow ease-in-out .15',
+                                        height: '42px',
+                                        'border-radius': 0,
+                                        background: '#f5f5f5',
+                                        border: '1px solid transparent'                                                   
+                                    }" >
+                            </owl-date-time>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-default btn-lg m-b-10 bg-primary border-none m-r-5 sbmt-btn" type="submit"><i class="ti-save"> </i>{{addSaveNtn}}</button>
+                    <button (click)="examReset()" class="btn btn-default btn-lg m-b-10 m-l-5 sbmt-btn" type="button">Reset</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="card alert">
+                <div class="card-header pr">
+                    <h4>All Exams </h4>
+                    <div class="search-action">
+                        <div class="search-type dib">
+                            <input class="form-control input-rounded" placeholder="search" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table student-data-table m-t-20">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Subject</th>
+                                    <th>Coefficient</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let exam of exams | async" >
+                                    <td (dblclick)="editExam(exam)">
+                                        {{exam.examTitle}}
+                                    </td>
+                                    <td (dblclick)="editExam(exam)">
+                                        {{exam.subjectName}}
+                                    </td>
+                                    <td (dblclick)="editExam(exam)">
+                                        {{exam.examCoef}}
+                                    </td>
+                                    <td (dblclick)="editExam(exam)">
+                                        {{exam.examDate | date : "yyyy-MM-dd"}}
+                                    </td>
+                                    <td>
+                                        <span><a [routerLink]="" (click)="editExam(exam)"><i class="ti-pencil-alt color-success"></i></a></span>
+                                        <span><a [routerLink]="" (click)="deleteExam(exam)"><i class="ti-trash color-danger"></i> </a></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /# column -->
+          
+    </div>
+    <!-- /# row -->
+          
+</section>

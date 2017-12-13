@@ -1,0 +1,132 @@
+
+    <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures" style="height : 100vh;">
+        <div class="nano">
+            <div class="nano-content">
+                <ul>
+                    <li class="label">Main</li>
+
+                    <li><a routerLink="/dashboard" [routerLinkActive]="['active']"><i class="ti-home"></i> Dashboard </a></li>
+                    <li>
+                        <a class="sidebar-sub-toggle">
+                            <i class="ti-calendar"></i> Classes 
+                            <span class="sidebar-collapse-icon ti-angle-down"></span>
+                        </a>
+                        <ul style="display: none;">
+                            <li><a routerLink="/classes"  [routerLinkActive]="['active']"> Manage Classes </a></li>
+                            <li><a routerLink="/classes_slots"  [routerLinkActive]="['active']"> Class Slots </a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="sidebar-sub-toggle">
+                            <i class="ti-calendar"></i> Notes 
+                            <span class="sidebar-collapse-icon ti-angle-down"></span>
+                        </a>
+                        <ul style="display: none;">
+                            <li><a routerLink="/note-list"  [routerLinkActive]="['active']"> Notes List </a></li>
+                            <li><a routerLink="/add-note"  [routerLinkActive]="['active']"> Add note </a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- <li><a routerLink="/classes"  [routerLinkActive]="['active']"><i class="ti-calendar"></i> Classes </a></li> -->
+                    <!-- <li><a routerLink="/notes" [routerLinkActive]="['active']"><i class="ti-pencil-alt"></i> Notes </a></li> -->
+                    <li><a routerLink="/subjects" [routerLinkActive]="['active']"><i class="ti-bookmark"></i> Subjects </a></li>
+                    <li><a routerLink="/exams" [routerLinkActive]="['active']"><i class="ti-notepad"></i> Exams </a></li>
+                    <li><a routerLink="/teachers" [routerLinkActive]="['active']"><i class="ti-user"></i> Teachers </a></li>
+                    <li><a routerLink="/students" [routerLinkActive]="['active']"><i class="ti-user"></i> Students </a></li>
+                    <li><a routerLink="/users"    [routerLinkActive]="['active']"><i class="ti-user"></i> Users </a></li>
+                    <li><a routerLink="/assignements" [routerLinkActive]="['active']"><i class="ti-tag"></i> Assignements </a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /# sidebar -->
+
+    <div class="header">
+        <div class="pull-left">
+            <div class="logo"><a routerLink="" ><span>G.e.y Administration</span></a></div>
+            <div class="hamburger sidebar-toggle">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </div>
+        </div>
+        <div class="pull-right p-r-15">
+            <ul>
+                <li class="header-icon dib"><i class="ti-email"></i>
+                    <div class="drop-down">
+                        <div class="dropdown-content-heading">
+                            <span class="text-left">2 New Messages</span>
+                            <a routerLink=""><i class="ti-pencil-alt pull-right"></i></a>
+                        </div>
+                        <div class="dropdown-content-body">
+                            <ul>
+                                <li class="notification-unread">
+                                    <a routerLink="">
+                                        <img class="pull-left m-r-10 avatar-img" src="#" alt="" />
+                                        <div class="notification-content">
+                                            <small class="notification-timestamp pull-right">02:34</small>
+                                            <div class="notification-heading">Name</div>
+                                            <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="notification-unread">
+                                    <a routerLink="">
+                                        <img class="pull-left m-r-10 avatar-img" src="#" alt="" />
+                                        <div class="notification-content">
+                                            <small class="notification-timestamp pull-right">02:34</small>
+                                            <div class="notification-heading">Name</div>
+                                            <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a routerLink="">
+                                        <img class="pull-left m-r-10 avatar-img" src="#" alt="" />
+                                        <div class="notification-content">
+                                            <small class="notification-timestamp pull-right">02:34</small>
+                                            <div class="notification-heading">Name</div>
+                                            <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a routerLink="">
+                                        <img class="pull-left m-r-10 avatar-img" src="#" alt="" />
+                                        <div class="notification-content">
+                                            <small class="notification-timestamp pull-right">02:34</small>
+                                            <div class="notification-heading">Name</div>
+                                            <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="text-center">
+                                    <a routerLink="" class="more-link">See All</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="header-icon dib"><img class="avatar-img" src="#" alt="" /> 
+                    <span class="user-avatar">User Name <i class="ti-angle-down f-s-10"></i></span>
+                    <div class="drop-down dropdown-profile">
+                        <div class="dropdown-content-body">
+                            <ul>
+                                <li><a routerLink=""><i class="ti-user"></i> <span>Profile</span></a></li>
+                                <li><a routerLink=""><i class="ti-email"></i> <span>Inbox</span></a></li>
+                                <li><a routerLink=""><i class="ti-power-off"></i> <span>Logout</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-wrap">
+        <div class="main">
+            <div class="container-fluid">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>

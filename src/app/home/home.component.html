@@ -1,0 +1,90 @@
+<div class="main">
+    <div class="container-fluid" style="padding:0;">
+        <div class="row">
+            <div class="col-lg-8 p-r-0 title-margin-right">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h1>Dashboard</h1>
+                    </div>
+                </div>
+            </div>
+            <!-- /# column -->
+            <div class="col-lg-4 p-l-0 title-margin-left">
+                <div class="page-header">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <!-- <li><a href="#">Dashboard</a></li>
+                            <li class="active">App-Widget-Card</li> -->
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <!-- /# column -->
+        </div>
+        <!-- /# row -->
+        <div id="main-content">
+            <div class="row">
+                <div class="col-lg-3">
+                    <a routerLink="/teachers">
+                      <div class="card">
+                          <div class="stat-widget-one">
+                              <div class="stat-icon dib">
+                                <i class="ti-user color-primary border-primary"></i>
+                              </div>
+                              <div class="stat-content dib">
+                                  <div class="stat-text">Total Teachers</div>
+                                  <div class="stat-digit">{{ teachersName.length | json}}</div>
+                              </div>
+                          </div>
+                      </div>                    
+                    </a>
+                </div>
+                <div class="col-lg-3">
+                    <a routerLink="/students">
+                      <div class="card">
+                          <div class="stat-widget-one">
+                              <div class="stat-icon dib">
+                                <i class="ti-user color-success border-success"></i>
+                              </div>
+                              <div class="stat-content dib">
+                                  <div class="stat-text">Total Students</div>
+                                  <div class="stat-digit">{{ studentsName.length | json}}</div>
+                              </div>
+                          </div>
+                      </div>                    
+                    </a>
+                </div>
+                <div class="col-lg-3">
+                  <a routerLink="/classes">
+                    <div class="card">
+                        <div class="stat-widget-one">
+                            <div class="stat-icon dib">
+                              <i class="ti-layout-grid2 color-pink border-pink"></i>
+                            </div>
+                            <div class="stat-content dib">
+                                <div class="stat-text">Total Classes</div>
+                                <div class="stat-digit">{{ classesName.length | json}}</div>
+                            </div>
+                        </div>
+                    </div>                    
+                  </a>
+                </div>
+                <div class="col-lg-3">
+                  <a routerLink="/subjects">
+                    <div class="card">
+                        <div class="stat-widget-one">
+                            <div class="stat-icon dib">
+                              <i class="ti-link color-danger border-danger"></i>
+                            </div>
+                            <div class="stat-content dib">
+                                <div class="stat-text">Total Subjects</div>
+                                <div class="stat-digit">{{ subjectsName.length | json}}</div>
+                            </div>
+                        </div>
+                    </div>                    
+                  </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+
+input.ng-invalid.ng-touched {
+    border-color: #e74c3c;
+}
+
+select.ng-invalid.ng-touched {
+    border-color: #e74c3c;
+}
+
+textarea.ng-invalid.ng-touched {
+    border-color: #e74c3c;
+}
+
+input.ng-valid.ng-touched {
+    border-color: #1f9821;
+}
+
+select.ng-valid.ng-touched {
+    border-color: #1f9821;
+}
+
+textarea.ng-valid.ng-touched {
+    border-color: #1f9821;
+}
+.note-details {
+    color: #1971ab;
+    font-size: .85em;
+    margin-left: .5em;
+}

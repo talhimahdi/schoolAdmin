@@ -1,0 +1,196 @@
+<p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="425" #cd>
+    <p-footer>
+        <button type="button" pButton icon="fa-close" label="No" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="fa-check" label="Yes" (click)="cd.accept()"></button>
+    </p-footer>
+</p-confirmDialog>
+<div class="row">
+  <div class="col-lg-8 p-r-0 title-margin-right">
+      <div class="page-header">
+          <div class="page-title">
+              <h1>{{section_name}}, <span>Section</span></h1>
+          </div>
+      </div>
+  </div>
+  <!-- /# column -->
+  <div class="col-lg-4 p-l-0 title-margin-left">
+      <div class="page-header">
+          <div class="page-title">
+              <ol class="breadcrumb text-right">
+                  <li><a [routerLink]="'/'">Dashboard</a></li>
+                  <li class="active">{{section_name}}</li>
+              </ol>
+          </div>
+      </div>
+  </div>
+  <!-- /# column -->
+</div>
+<!-- /# row -->
+
+<section id="main-content">
+  <div class="row">
+        <div class="col-md-12">
+            <div class="card alert">
+                <div class="card-header pr">
+                    <h4>Add New Student</h4>
+                </div>
+                <form (submit)="addUpdateStudent(student)" (keydown.enter)="$event.preventDefault()" autocomplete="off">
+                    <div class="row">
+                        <div class="basic-form m-t-20 col-md-3">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" [(ngModel)]="student.firstName" name="firstName" class="form-control border-none input-flat bg-ash" required>
+                            </div>
+                        </div>
+                        <div class="basic-form m-t-20 col-md-3">
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" [(ngModel)]="student.lastName" name="lastName" class="form-control border-none input-flat bg-ash" required>
+                            </div>
+                        </div>
+                        <div class="basic-form m-t-20 col-md-3">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" [(ngModel)]="student.email" name="email" class="form-control border-none input-flat bg-ash" required>
+                            </div>
+                        </div>
+                        <div class="basic-form m-t-20 col-md-3">
+                            <div class="form-group">
+                                <label>gender</label>
+                                <select [(ngModel)]="student.gender" name="gender" class="form-control bg-ash border-none" required>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="basic-form m-t-20 col-md-3">
+                            <div class="form-group">
+                                <label>Classe</label>
+                                <select [(ngModel)]="student.classeId" name="classeId" class="form-control bg-ash border-none" required>
+                                    <option *ngFor="let classe of classes | async" [value]="classe.id" >{{classe.displayName}}</option>
+                                </select>
+                            </div>
+                        </div> 
+                        <div class="basic-form m-t-20 col-md-3">
+                            <div class="form-group">
+                                <label>Birthday</label>
+                                <owl-date-time [(ngModel)]="student.birthday" 
+                                    name="birthday" 
+                                    [placeHolder]="'YYY-MM-DD'" 
+                                    [dateFormat]="'YYYY-MM-DD'" 
+                                    [autoClose]="true"
+                                    [type]="'calendar'"
+                                    [inputStyle] = "{
+                                                    padding: '6px 12px',
+                                                    transition: 'border-color ease-in-out .15s,box-shadow ease-in-out .15',
+                                                    height: '42px',
+                                                    'border-radius': 0,
+                                                    background: '#f5f5f5',
+                                                    border: '1px solid transparent'                                                   
+                                                }" >
+                                </owl-date-time>
+                                <!-- padding: 6px 12px;
+                                    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+                                    height: 42px;
+                                    border-radius: 0;
+                                    background: #f5f5f5;
+                                    border: 1px solid transparent; -->
+                                <!-- <input [(ngModel)]="student.birthday" name="birthday" type="text" class="form-control border-none input-flat bg-ash" placeholder="yyyy-mm-dd" required>
+                                <span class="ti-calendar form-control-feedback booking-system-feedback m-t-30"></span> -->
+                            </div>
+                        </div>
+                        <div class="basic-form m-t-20 col-md-6">
+                            <div class="form-group">
+                                <label>Address</label>
+                                <textarea [(ngModel)]="student.address" name="address" cols="30" rows="2" class="form-control border-none input-flat bg-ash" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="basic-form m-t-20 col-md-3">
+                            <div class="form-group image-type">
+                                <label>Upload Student Photo <span>(150 X 150)</span></label>
+                                <input type="file" name="pic" id="pic" accept="image/*" required>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-default btn-lg m-b-10 bg-primary border-none m-r-5 sbmt-btn" type="submit"><i class="ti-save"> </i>{{addSaveNtn}}</button>
+                    <button (click)="studentReset()" class="btn btn-default btn-lg m-b-10 m-l-5 sbmt-btn" type="button">Reset</button>
+                </form>
+         
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="card alert">
+                <div class="card-header pr">
+                    <h4>All Students </h4>
+                    <div class="search-action">
+                        <div class="search-type dib">
+                            <input class="form-control input-rounded" placeholder="search" type="text">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table student-data-table m-t-20">
+                            <thead>
+                                <tr>
+                                    <th>Photo</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Gender</th>
+                                    <th>Birthday</th>
+                                    <th>Address</th>
+                                    <th>Classe</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let student of students | async" >
+                                    <td (dblclick)="editStudent(student)">
+                                        <div class="round-img">
+                                            <a [routerLink]="['/students/details/', student.id]"><img [src]="student.photoURL" onError="this.src='http://www.clker.com/cliparts/d/L/P/X/z/i/no-image-icon-md.png'" alt="" width="50" height="50"></a>
+                                        </div>
+                                    </td>
+                                    <td (dblclick)="editStudent(student)">
+                                        {{student.firstName}}
+                                    </td>
+                                    <td (dblclick)="editStudent(student)">
+                                        {{student.lastName}}
+                                    </td>
+                                    <td (dblclick)="editStudent(student)">
+                                        {{student.email}}
+                                    </td>
+                                    <td (dblclick)="editStudent(student)">
+                                        {{student.gender}}
+                                    </td>
+                                    <td (dblclick)="editStudent(student)">
+                                        {{student.birthday | date : "yyyy-MM-dd"}}
+                                    </td>
+                                    <td (dblclick)="editStudent(student)">
+                                        {{student.address}}
+                                    </td>
+                                    <td (dblclick)="editStudent(student)">
+                                        {{student.classeDisplayName}}
+                                    </td>
+                                    
+                                    <td>
+                                        <span><a [routerLink]="['/students/details/', student.id]"><i class="ti-eye color-default"></i></a></span>
+                                        <span><a [routerLink]="" (click)="editStudent(student)"><i class="ti-pencil-alt color-success"></i></a></span>
+                                        <span><a [routerLink]="" (click)="deleteStudent(student)"><i class="ti-trash color-danger"></i> </a></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+      <!-- /# column -->
+
+  </div>
+  <!-- /# row -->
+
+</section>

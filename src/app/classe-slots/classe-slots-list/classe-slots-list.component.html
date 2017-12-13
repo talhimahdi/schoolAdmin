@@ -1,0 +1,232 @@
+
+<div class="row">
+  <div class="col-lg-8 p-r-0 title-margin-right">
+      <div class="page-header">
+          <div class="page-title">
+              <h1>{{section_name}}, <span>Section</span></h1>
+          </div>
+      </div>
+  </div>
+  <!-- /# column -->
+  <div class="col-lg-4 p-l-0 title-margin-left">
+      <div class="page-header">
+          <div class="page-title">
+              <ol class="breadcrumb text-right">
+                <li><a [routerLink]="'/'">Dashboard</a></li>
+                <li class="active">{{section_name}}</li>
+              </ol>
+          </div>
+      </div>
+  </div>
+  <!-- /# column -->
+</div>
+<!-- /# row -->
+
+<section id="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card alert">
+        <div class="card-header pr">
+          <h4>Add New Slot</h4>  
+        </div>
+        <form (submit)="addUpdateClasseSlot(classeSlot)" (keydown.enter)="$event.preventDefault()" autocomplete="off">
+            <div class="row">
+                <div class="basic-form m-t-20 col-md-3">
+                    <div class="form-group">
+                        <label>Classe Name</label>
+                        <select [(ngModel)]="classeSlot.classeName" name="classeName" class="form-control bg-ash border-none" required>
+                            <option></option>
+                            <option *ngFor="let clsName of classesName" >{{clsName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="basic-form m-t-20 col-md-3">
+                    <div class="form-group">
+                        <label>Color</label>
+                        <select [(ngModel)]="classeSlot.color" name="color" class="form-control bg-ash border-none" required>
+                            <option>tooling</option>
+                            <option>services</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="basic-form m-t-20 col-md-3">
+                    <div class="form-group">
+                        <label>Subject Name</label>
+                        <select [(ngModel)]="classeSlot.subjectName" name="subjectName" class="form-control bg-ash border-none" required>
+                            <option></option>
+                            <option *ngFor="let subjName of subjectsName" >{{subjName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="basic-form m-t-20 col-md-3">
+                    <div class="form-group">
+                        <label>Teacher Name</label>
+                        <select [(ngModel)]="classeSlot.teacherName" name="teacherName" class="form-control bg-ash border-none" required>
+                            <option></option>
+                            <option *ngFor="let teacherName of teachersName" >{{teacherName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="basic-form m-t-20 col-md-3">
+                    <div class="form-group">
+                    <label>Start Date</label>
+                        <owl-date-time [(ngModel)]="classeSlot.startDate" name="startDate" 
+                            [placeHolder]="'YYY-MM-DD'" 
+                            [dateFormat]="'YYYY-MM-DD'" 
+                            [autoClose]="true"
+                            [type]="'calendar'"
+                            [inputStyle] = "
+                            {
+                                padding: '6px 12px',
+                                transition: 'border-color ease-in-out .15s,box-shadow ease-in-out .15',
+                                height: '42px',
+                                'border-radius': 0,
+                                background: '#f5f5f5',
+                                border: '1px solid transparent'                                                   
+                            }" 
+                        >
+                    </owl-date-time>
+                    </div>
+                </div>
+                <div class="basic-form m-t-20 col-md-3">
+                        <div class="form-group">
+                        <label>End Date</label>
+                            <owl-date-time [(ngModel)]="classeSlot.endDate" name="endDate" 
+                                [placeHolder]="'YYY-MM-DD'" 
+                                [dateFormat]="'YYYY-MM-DD'" 
+                                [autoClose]="true"
+                                [type]="'calendar'"
+                                [inputStyle] = "
+                                {
+                                    padding: '6px 12px',
+                                    transition: 'border-color ease-in-out .15s,box-shadow ease-in-out .15',
+                                    height: '42px',
+                                    'border-radius': 0,
+                                    background: '#f5f5f5',
+                                    border: '1px solid transparent'                                                   
+                                }" 
+                            >
+                        </owl-date-time>
+                        </div>
+                    </div>
+                <div class="basic-form m-t-20 col-md-3">
+                    <div class="form-group">
+                        <label>Start Slot</label>
+                        <owl-date-time [(ngModel)]="classeSlot.timeStart" name="timeStart" 
+                        [placeHolder]="'HH:MM'" 
+                        [dateFormat]="'HH:mm'" 
+                        [autoClose]="true"
+                        [type]="'timer'"
+                        [inputStyle] = "
+                            {
+                            padding: '6px 12px',
+                            transition: 'border-color ease-in-out .15s,box-shadow ease-in-out .15',
+                            height: '42px',
+                            'border-radius': 0,
+                            background: '#f5f5f5',
+                            border: '1px solid transparent'                                                   
+                            }" 
+                        >
+                        </owl-date-time>
+                    </div>
+                </div>
+                <div class="basic-form m-t-20 col-md-3">
+                    <div class="form-group">
+                    <label>End Slot</label>
+                    <owl-date-time [(ngModel)]="classeSlot.timeEnd" name="timeEnd" 
+                        [placeHolder]="'HH:MM'" 
+                        [dateFormat]="'HH:mm'" 
+                        [autoClose]="true"
+                        [type]="'timer'"
+                        [inputStyle] = "
+                        {
+                            padding: '6px 12px',
+                            transition: 'border-color ease-in-out .15s,box-shadow ease-in-out .15',
+                            height: '42px',
+                            'border-radius': 0,
+                            background: '#f5f5f5',
+                            border: '1px solid transparent'                                                   
+                        }" 
+                    >
+                    </owl-date-time>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-default btn-lg m-b-10 bg-primary border-none m-r-5 sbmt-btn" type="submit"><i class="ti-save"> </i>{{addSaveNtn}}</button>
+            <button (click)="classeSlotReset()" class="btn btn-default btn-lg m-b-10 m-l-5 sbmt-btn" type="button">Reset</button>
+        </form> 
+      </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="card alert">
+            <div class="card-header pr">
+                <h4>All Slots </h4>
+                <div class="search-action">
+                    <div class="search-type dib">
+                        <input class="form-control input-rounded" placeholder="search" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table student-data-table m-t-20">
+                        <thead>
+                            <tr>
+                                <th>Classe Name</th>
+                                <th>Color</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <!-- <th>DayNumber</th> -->
+                                <th>SubjectName</th>
+                                <th>TeacherName</th>
+                                <th>timeStart</th>
+                                <th>TimeEnd</th>
+
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let classeSlot of classesSlots | async" >
+                                <td (dblclick)="editClasseSlot(classeSlot)">
+                                  {{ classeSlot.classeName }}
+                                </td>
+                                <td (dblclick)="editClasseSlot(classeSlot)">
+                                  {{ classeSlot.color }}
+                                </td>
+                                <td (dblclick)="editClasseSlot(classeSlot)">
+                                  {{ classeSlot.startDate | date : "yyyy-MM-dd"}}
+                                </td>
+                                <td (dblclick)="editClasseSlot(classeSlot)">
+                                    {{ classeSlot.endDate | date : "yyyy-MM-dd"}}
+                                </td>
+                                <!-- <td (dblclick)="editClasseSlot(classeSlot)">
+                                  {{ classeSlot.dayNumber }}
+                                </td> -->
+                                <td (dblclick)="editClasseSlot(classeSlot)">
+                                  {{ classeSlot.subjectName }}
+                                </td>
+                                <td (dblclick)="editClasseSlot(classeSlot)">
+                                  {{ classeSlot.teacherName }}
+                                </td>
+                                <td (dblclick)="editClasseSlot(classeSlot)">
+                                  {{ classeSlot.timeStart }}
+                                </td>
+                                <td (dblclick)="editClasseSlot(classeSlot)">
+                                  {{ classeSlot.timeEnd }}
+                                </td>
+                                <td>
+                                    <span><a [routerLink]="" (click)="editClasseSlot(classeSlot)"><i class="ti-pencil-alt color-success"></i></a></span>
+                                    <span><a [routerLink]="" (click)="deleteClasse(classeSlot)"><i class="ti-trash color-danger"></i> </a></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /# column -->
+  </div>
+  <!-- /# row -->
+
+</section>

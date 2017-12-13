@@ -1,0 +1,230 @@
+<p-dialog [(visible)]="display" [width]="500">
+    <p-header>
+        New note details
+    </p-header>
+    <form (submit)="addNote(note)" (keydown.enter)="$event.preventDefault()" (keydown.enter)="$event.preventDefault()" autocomplete="off">
+        <div class="col-md-12">
+            <div class="card alert">
+                <div class="row">
+                    <div class="basic-form m-t-20 col-md-6">
+                        <div class="form-group">
+                            <label>Teacher: </label>
+                            <span class="note-details">
+                                {{selectedTeacher.displayName}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="basic-form m-t-20 col-md-6">
+                        <div class="form-group">
+                            <label>Subject: </label>
+                            <span class="note-details">
+                                {{selectedSubject.subjectName}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="basic-form m-t-20 col-md-6">
+                        <div class="form-group">
+                            <label>Student: </label>
+                            <span class="note-details">
+                                {{selectedStudent.displayName}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="basic-form m-t-20 col-md-6">
+                        <div class="form-group">
+                            <label>Classe </label>
+                            <span class="note-details">
+                                {{selectedClasse.displayName}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="basic-form m-t-20 col-md-6">
+                        <div class="form-group">
+                            <label>Exam Type </label>
+                            <select [(ngModel)]="note.examId" name="examId" class="form-control bg-ash border-none" required>
+                                <option></option>
+                                <option *ngFor="let exam of exams | async" [value]="exam.id">{{exam.examTitle}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="basic-form m-t-20 col-md-6">
+                        <div class="form-group">
+                            <label>Note</label>
+                            <input [(ngModel)]="note._note" name="_note" type="text" class="form-control border-none input-flat bg-ash" placeholder="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p-footer>
+            <button type="text" type="submit" pButton icon="ti-save" label="Add Note"></button>
+            <button type="text" (click)="cancelNote()" pButton icon="fa-external-link-square" label="Cancel"></button>
+        </p-footer>
+    </form>
+</p-dialog>
+
+<div class="row">
+    <div class="col-lg-8 p-r-0 title-margin-right">
+        <div class="page-header">
+            <div class="page-title">
+                <h1>New Notes</h1>
+            </div>
+        </div>
+    </div>
+    <!-- /# column -->
+    <div class="col-lg-4 p-l-0 title-margin-left">
+        <div class="page-header">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li><a [routerLink]="'/'">Dashboard</a></li>
+                    <li><a [routerLink]="'/note-list'">Notes List</a></li>
+                    <li class="active">New note</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- /# column -->
+</div>
+<!-- /# row -->
+  
+<section id="main-content">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card alert">
+                <form (keydown.enter)="$event.preventDefault()" autocomplete="off">
+                    <div class="row">
+                        <div class="basic-form m-t-20">
+                            <img *ngIf="loadingTeachers" alt="" src="http://www.gcorr.org/wp-content/plugins/wppdf/images/loading.gif" width="20" style="float: right;">
+                            <div class="form-group">
+                                <label>Select one Teacher </label>
+                                <select [(ngModel)]="teacher.displayName" name="displayName" (ngModelChange)="getAssignementsByTeacherID($event)" class="form-control bg-ash border-none" required>
+                                    <option></option>
+                                    <option *ngFor="let teacher of teachers | async" [ngValue]="teacher" [value]="teacher.id">{{teacher.displayName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div *ngIf="!studentsList" class="card alert">
+                <div class="card-header pr">
+                    <h4>Classes List </h4>
+                    <div class="search-action">
+                        <div class="search-type dib">
+                            <input class="form-control input-rounded" placeholder="search" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table student-data-table m-t-20">
+                            <thead>
+                                <tr>
+                                    <th>Subject</th>
+                                    <th>Classe</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- <tr *ngFor="let note of notes | async" >
+                                    <td>
+                                        {{ note.abbreviation }}
+                                    </td>
+                                    <td>
+                                        {{ note.classeId }}
+                                    </td>
+                                    <td>
+                                        {{ note.coef }}
+                                    </td>
+                                    <td>
+                                        {{ note.studentId }}
+                                    </td>
+                                    <td>
+                                        {{ note.subjectId }}
+                                    </td>
+                                    <td>
+                                        {{ note.teacherId }}
+                                    </td>
+                                    
+                                    <td>
+                                        <span><a [routerLink]="['/assignements/details/']"><i class="ti-eye color-default"></i></a></span>
+                                        <span><a [routerLink]="" (click)="editAssignement(assignement)"><i class="ti-pencil-alt color-success"></i></a></span>
+                                        <span><a [routerLink]="" (click)="deleteAssignement(assignement)"><i class="ti-trash color-danger"></i> </a></span>
+                                    </td>
+                                </tr> -->
+                                <tr *ngIf="assignementsCount == 0" >
+                                    <td colspan="3" style="float: left">
+                                        No records found.
+                                    </td>
+                                </tr>
+                                <tr *ngFor="let assignement of assignements | async" >
+                                    <td>
+                                        {{ assignement.subject.subjectName }}
+                                    </td>
+                                    <td>
+                                        {{ assignement.classe.displayName }}
+                                    </td>
+                                    
+                                    <td>
+                                        <!-- <span><a [routerLink]="" (click)="studentsListByClasse(assignement.classe.id, assignement.subject.id)"><i class="ti-eye color-default"></i></a></span> -->
+                                        <button type="text" (click)="studentsListByClasse(assignement.classe.id, assignement.subject.id)" pButton label="Students List"></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>  
+            <div *ngIf="studentsList" class="card alert">
+                <div class="card-header pr">
+                    <h4>
+                        <span><a [routerLink]="" (click)="hideStudentsList(teacher.displayName)"><i class="ti-back-left color-default"></i></a></span>
+                        Students List
+                    </h4>
+                    <div class="search-action">
+                        <div class="search-type dib">
+                            <input class="form-control input-rounded" placeholder="search" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table student-data-table m-t-20">
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngIf="studentsCount == 0" >
+                                    <td colspan="3" style="float: left">
+                                        No records found.
+                                    </td>
+                                </tr>
+                                <tr *ngFor="let student of students | async" >
+                                    <td>
+                                        {{ student.firstName }}
+                                    </td>
+                                    <td>
+                                        {{ student.lastName }}
+                                    </td>
+                                    
+                                    <td>
+                                        <button type="text" (click)="newNote(student)" pButton icon="fa-external-link-square" label="Add Note"></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /# column -->
+    </div>
+    <!-- /# row -->
+  
+  </section>
