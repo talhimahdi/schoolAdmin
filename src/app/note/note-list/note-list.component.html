@@ -34,7 +34,7 @@
                 <div class="card-header pr">
                     <h4>Notes List</h4>
                 </div>
-                <form (submit)="addUpdateTeacher(teacher)" (keydown.enter)="$event.preventDefault()" autocomplete="off">
+                <form (keydown.enter)="$event.preventDefault()" autocomplete="off">
                     <div class="row">
                         <div class="basic-form m-t-20 col-md-3">
                             <img *ngIf="loadingTeachers" alt="" src="http://www.gcorr.org/wp-content/plugins/wppdf/images/loading.gif" width="20" style="float: right;">
@@ -47,8 +47,6 @@
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-default btn-lg m-b-10 bg-primary border-none m-r-5 sbmt-btn" type="submit"><i class="ti-save"> </i>{{addSaveNtn}}</button>
-                    <button (click)="teacherReset()" class="btn btn-default btn-lg m-b-10 m-l-5 sbmt-btn" type="button">Reset</button>
                 </form>
         
             </div>
@@ -56,7 +54,7 @@
         <div class="col-lg-12">
             <div class="card alert">
                 <div class="card-header pr">
-                    <h4>All Teachers </h4>
+                    <h4>All Notes </h4>
                     <div class="search-action">
                         <div class="search-type dib">
                             <input class="form-control input-rounded" placeholder="search" type="text">
