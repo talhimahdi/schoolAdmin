@@ -19,20 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css",
-        "assets/theme-assets/css/lib/chartist/chartist.min.css",
-        "assets/theme-assets/css/lib/calendar2/pignose.calendar.min.css",
-        "assets/theme-assets/css/lib/themify-icons.css",
-        "assets/theme-assets/css/lib/owl.carousel.min.css",
-        "assets/theme-assets/css/lib/owl.theme.default.min.css",
-        "assets/theme-assets/css/lib/weather-icons.css",
-        "assets/theme-assets/css/lib/menubar/sidebar.css",
-        "assets/theme-assets/css/lib/unix.css",
-        "assets/theme-assets/css/lib/bootstrap.min.css",
-        "assets/theme-assets/css/style.css",
-        "../node_modules/ng-pick-datetime/assets/style/picker.min.css",
-        "../node_modules/primeng/resources/themes/omega/theme.css",
-        "../node_modules/primeng/resources/primeng.min.css"
+        "styles.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

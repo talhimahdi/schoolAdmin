@@ -40,21 +40,6 @@ body{
 	margin-left: 45px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @font-face {
 	font-family: 'themify';
 	src:url('../../fonts/themify9f24.eot?-fvbane');
@@ -79,7 +64,6 @@ body{
 
 [class^="ti-"], [class*=" ti-"] {
 	font-family: 'themify';
-	speak: none;
 	font-style: normal;
 	font-weight: normal;
 	font-variant: normal;
